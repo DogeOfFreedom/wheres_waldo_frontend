@@ -66,3 +66,17 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+@font-face {
+  font-family: libreBold;
+  src: url("./public/LibreCaslonText-Bold.ttf");
+}
+
+@font-face {
+  font-family: libre;
+  src: url("./public/LibreCaslonText-Regular.ttf");
+}
+
+.overflowContainer {
+  overflow: hidden;
+}
