@@ -1,7 +1,13 @@
+import ColouredBG from "./ColouredBG";
+import Leaderboard from "./Leaderboard";
+import ThankYouScreen from "./ThankYouScreen";
+
 function EndScreen() {
   return (
     <>
-      <h1>END BITCH</h1>
+      <ColouredBG />
+      <ThankYouScreen />
+      <Leaderboard />
     </>
   );
 }

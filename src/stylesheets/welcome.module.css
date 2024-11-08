@@ -19,6 +19,7 @@
     width: 100vw;
     height: calc(100vh - var(--top));
     margin-top: var(--top);
+    position: relative;
 }
 
 .container span {
