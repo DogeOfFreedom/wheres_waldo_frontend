@@ -1,4 +1,4 @@
-import LBClasses from "./stylesheets/leaderboard.module.css";
+import LBClasses from "../stylesheets/leaderboard.module.css";
 
 function Leaderboard() {
   const data = [

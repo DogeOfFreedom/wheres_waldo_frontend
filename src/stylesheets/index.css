@@ -43,16 +43,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
@@ -70,12 +61,12 @@ button:focus-visible {
 
 @font-face {
   font-family: libreBold;
-  src: url("./public/LibreCaslonText-Bold.ttf");
+  src: url("../LibreCaslonText-Bold.ttf");
 }
 
 @font-face {
   font-family: libre;
-  src: url("./public/LibreCaslonText-Regular.ttf");
+  src: url("../LibreCaslonText-Regular.ttf");
 }
 
 body {
@@ -98,3 +89,55 @@ body {
   flex-direction: column;
   box-sizing: border-box;
 }
+
+.actionBtn {
+  font-size: 64px;
+  border-radius: 20px;
+  background-color: white;
+  color: black;
+  padding: 20px 30px;
+}
+
+.backBtn {
+  --icon: 32px;
+  --rotation: -90deg;
+  
+  background-color: #1c1c1c;
+  padding: 0px;
+  font-size: var(--icon);
+
+  .backBtnIconContainer {
+    position: relative;
+  }
+
+  .mainIcon, .iconShadow {
+    transition: transform  0.1s ease-out;
+  }
+
+  .mainIcon {
+    padding: 15px 30px;
+    z-index: 2;
+    position: relative;
+  }
+  
+  .iconShadow {
+    --offsetX: 3px;
+    --offsetY: 3px;
+
+    z-index: 1;
+    position: absolute;
+    transform: translate(calc(-50% + var(--offsetX)), calc(-50% + var(--offsetY)));
+    top: 50%;
+    left: 50%;
+    color: #E94B4B;
+  }
+
+  .rotate {
+    transform: rotate(var(--rotation));
+  }
+
+  .rotateSpecial {
+    transform: translate(calc(-50% + var(--offsetX)), calc(-50% + var(--offsetY))) rotate(var(--rotation));
+  }
+}
+

@@ -1,17 +1,25 @@
 import welcomeClasses from "./stylesheets/welcome.module.css";
+import ColouredBG from "./ColouredBG";
+import { useNavigate } from "react-router-dom";
 
 function Welcome() {
+  const navigate = useNavigate();
+
   return (
     <>
+      <ColouredBG />
       <div className="overflowContainer">
         <div className={welcomeClasses.container}>
-          <div className={welcomeClasses.imgSpanContainer}>
-            <span>WHERE'S</span>
-            <img
-              className={welcomeClasses.walkingWaldo}
-              src="./pngegg.png"
-              alt="walkingWaldo"
-            />
+          <div className={welcomeClasses.titleContainer}>
+            <div className={welcomeClasses.imgSpanContainer}>
+              <span>WHERE'S</span>
+              <img
+                className={welcomeClasses.walkingWaldo}
+                src="./pngegg.png"
+                alt="walkingWaldo"
+              />
+            </div>
+            <span className={welcomeClasses.secondRowTitle}>WALDO?</span>
             <div className={welcomeClasses.subTextContainer}>
               <span className={welcomeClasses.creatorName}>(Jiachen Si)</span>
               <div>
@@ -20,14 +28,13 @@ function Welcome() {
               </div>
             </div>
           </div>
-          <span className={welcomeClasses.secondRowTitle}>WALDO?</span>
-          <div className={welcomeClasses.innerContainer}>
-            <img
-              className={welcomeClasses.waldoHead}
-              src="./public/pngkey.com-wheres-waldo-png-9298678.png"
-              alt="waldoHead"
-            />
-          </div>
+          <button
+            className={`${welcomeClasses.actionBtn} actionBtn`}
+            onClick={() => navigate("/LevelSelect")}
+          >
+            Play
+            <i className="fa-solid fa-arrow-right"></i>
+          </button>
         </div>
       </div>
     </>

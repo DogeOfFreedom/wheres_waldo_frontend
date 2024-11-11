@@ -30,6 +30,10 @@
     padding-left: 60px;
 } 
 
+.titleContainer {
+    position: relative;
+}
+
 .imgSpanContainer {
     position: relative;
 }
@@ -50,14 +54,6 @@
     height: 90vh;
 }
 
-.waldoHead {
-    width: auto;
-    height: 100%;
-    padding-left: 50px;
-    opacity: 0.2;
-    transform: translateX(20%);
-  }
-
 .creatorName {
     color: black;
     font-size: 128px
@@ -65,7 +61,6 @@
 
 .subTextContainer {
     position: absolute;
-    top: calc(var(--line-height) * 2);
     font-size: 32px;
     display: flex;
     align-items: start;
@@ -80,4 +75,14 @@
     display: flex;
     flex-direction: column;
     transform: translate(-10%, 150%);
+}
+
+.actionBtn {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }

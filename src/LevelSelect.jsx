@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import LSClasses from "./stylesheets/levelSelect.module.css";
+import ColouredBG from "./ColouredBG";
+import Back from "./Back";
 
 function LevelSelect() {
   const levels = [
@@ -12,12 +15,15 @@ function LevelSelect() {
     },
     { name: "Snow Day", img: "snow_day.jpg" },
   ];
+  const navigate = useNavigate();
 
   return (
     <>
+      <ColouredBG />
       <div className="overflowContainer">
         <div className={LSClasses.outerContainer}>
           <div className={LSClasses.innerContainer}>
+            <Back previousPage={"/Welcome"} style={LSClasses.backBtn} />
             <h1 className="sectionHeader">Level Select</h1>
             <div className={LSClasses.levelSelectContainer}>
               {levels.map((level) => {
@@ -26,6 +32,9 @@ function LevelSelect() {
                     className={LSClasses.card}
                     key={level.name}
                     data-testid="level"
+                    onClick={() => {
+                      navigate("/Game/" + level.name);
+                    }}
                   >
                     <img
                       className={LSClasses.cardBG}

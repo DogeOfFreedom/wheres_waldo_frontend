@@ -1,0 +1,130 @@
+.container {
+    height: 100vh;
+    box-sizing: border-box;
+    display: grid;
+    grid-template: 100vh / 1fr 7fr;
+    align-items: center;
+}
+
+.uiContainer {
+    display: flex;
+    align-items: center;
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.uiInnerContainer {
+    background-color: #FAF3E1;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.waldo {
+    height: auto;
+    width: 70%;
+}
+
+.timerContainer {
+    background-color: white;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 100%;
+    
+}
+
+.timerContainer span {
+    color: black;
+    font-size: 40px;
+}
+
+.timerContainer :nth-child(odd) {
+    width: 50px;
+}
+
+.selectionZone {
+    grid-area: 1 / 2 / 2 / 3;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    min-width: auto;
+    min-height: auto;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.gameImage {
+    grid-area: 1 / 2 / 2 / 3;
+    max-width: 100%;
+    max-height: 100vh;
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+.playerChoiceMarker {
+    --radius: 50px;
+    --redDotRadius: 10px;
+
+    height: calc(var(--radius) * 2);
+    width: calc(var(--radius) * 2);
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid black;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    transform: translate(-50%, -50%);
+
+    .redDot {
+        background-color: red;
+        height: var(--redDotRadius);
+        width: var(--redDotRadius);
+        border-radius: var(--redDotRadius);
+    }
+}
+
+.answerMarker {
+    --len: 60px;
+    --padding: 7px;
+    --border: 2px;
+
+    height: var(--len);
+    width: var(--len);
+    border-radius: var(--len);
+    border: var(--border) solid black;
+    background-color: #E94B4B;
+    position: absolute;
+    padding: var(--padding);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    transform: translate(-50%, -50%);
+
+    .innerAnswerMarker {
+        background-color: rgb(26, 26, 26);
+        width: calc(var(--len) - 2*var(--padding) - 2*var(--border));
+        height: calc(var(--len) - 2*var(--padding) - 2*var(--border));
+        border-radius: var(--len);
+        box-sizing: border-box;
+        
+        img {
+            height: inherit;
+            width: inherit;
+        }
+    }
+}
+
+.backBtn {
+    margin-top: 10px;
+}
+

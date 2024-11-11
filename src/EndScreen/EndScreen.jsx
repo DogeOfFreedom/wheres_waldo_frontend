@@ -1,4 +1,4 @@
-import ColouredBG from "./ColouredBG";
+import ColouredBG from "../ColouredBG";
 import Leaderboard from "./Leaderboard";
 import ThankYouScreen from "./ThankYouScreen";
 
