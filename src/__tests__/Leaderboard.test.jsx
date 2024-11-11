@@ -1,6 +1,6 @@
-const { render, screen } = require("@testing-library/react");
-const { describe, test, expect } = require("vitest");
-import Leaderboard from "../Leaderboard";
+import { describe, expect, test } from "vitest";
+import { render, screen } from "@testing-library/react";
+import Leaderboard from "../EndScreen/Leaderboard";
 
 describe("Leaderboard Component", () => {
   test("Title Text", () => {

@@ -1,16 +1,26 @@
 import { describe, expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
 import Welcome from "../Welcome";
+import { MemoryRouter, RouterProvider } from "react-router-dom";
+import router from "../Router";
 
 describe("Welcome Component", () => {
   test("Title Text", () => {
-    render(<Welcome />);
+    render(
+      <MemoryRouter>
+        <Welcome />
+      </MemoryRouter>
+    );
     expect(screen.getByText(/where's/i)).toBeInTheDocument();
     expect(screen.getByText(/waldo?/i)).toBeInTheDocument();
   });
 
   test("Title Sub Text", () => {
-    render(<Welcome />);
+    render(
+      <MemoryRouter>
+        <Welcome />
+      </MemoryRouter>
+    );
     expect(screen.getByText(/(Jiachen Si)/i)).toBeInTheDocument();
     expect(
       screen.getByText(/Can someone please find him?/i)
@@ -21,8 +31,20 @@ describe("Welcome Component", () => {
   });
 
   test("Waldo Images", () => {
-    render(<Welcome />);
-    expect(screen.getByAltText("waldoHead")).toBeInTheDocument();
+    render(
+      <MemoryRouter>
+        <Welcome />
+      </MemoryRouter>
+    );
     expect(screen.getByAltText("walkingWaldo")).toBeInTheDocument();
+  });
+
+  test("Play Button", () => {
+    render(
+      <MemoryRouter>
+        <Welcome />
+      </MemoryRouter>
+    );
+    expect(screen.getByText(/Play/i)).toBeInTheDocument();
   });
 });

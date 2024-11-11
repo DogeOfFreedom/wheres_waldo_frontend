@@ -1,15 +1,24 @@
-const { render, screen } = require("@testing-library/react");
-const { describe, test, expect } = require("vitest");
-import ThankYouScreen from "../ThankYouScreen";
+import { describe, expect, test } from "vitest";
+import { render, screen } from "@testing-library/react";
+import ThankYouScreen from "../EndScreen/ThankYouScreen";
+import { MemoryRouter } from "react-router-dom";
 
 describe("Thank You Screen Component", () => {
   test("Title text", () => {
-    render(<ThankYouScreen />);
-    expect(screen.getByText(/Thanks for playing/i)).toBeInTheDocument();
+    render(
+      <MemoryRouter>
+        <ThankYouScreen />
+      </MemoryRouter>
+    );
+    expect(screen.getByText(/thanks for playing/i)).toBeInTheDocument();
   });
 
   test("Play again button", () => {
-    render(<ThankYouScreen />);
+    render(
+      <MemoryRouter>
+        <ThankYouScreen />
+      </MemoryRouter>
+    );
     expect(screen.getByText(/play again/i)).toBeInTheDocument();
   });
 });
