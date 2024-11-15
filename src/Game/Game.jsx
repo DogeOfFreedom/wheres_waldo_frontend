@@ -112,6 +112,11 @@ function Game() {
             <img src="../waldo_head_square.png" alt="" />
           </div>
         </div>
+
+        {/* 
+          Form for users to input their name
+          - Must have an "anon" option
+        */}
       </div>
     </>
   );
