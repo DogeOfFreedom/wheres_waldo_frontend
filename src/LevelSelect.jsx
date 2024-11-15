@@ -49,8 +49,10 @@ function LevelSelect() {
                     />
                     <div className={LSClasses.textContainer}>
                       <div className={LSClasses.textBorder}>
-                        <span className={LSClasses.blueHeader}>Where's</span>
-                        <span className={LSClasses.redHeader}>Waldo?</span>
+                        <div className={LSClasses.gameNameContainer}>
+                          <span className={LSClasses.blueHeader}>Where's</span>
+                          <span className={LSClasses.redHeader}>Waldo?</span>
+                        </div>
                         <span
                           className={LSClasses.levelName}
                           data-testid={level.name}
