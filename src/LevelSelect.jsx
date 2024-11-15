@@ -23,8 +23,10 @@ function LevelSelect() {
 
       <div className={LSClasses.outerContainer}>
         <div className={LSClasses.innerContainer}>
-          <Back previousPage={"/Welcome"} style={LSClasses.backBtn} />
-          <h1 className="sectionHeader">Level Select</h1>
+          <h1 className="sectionHeader">
+            Level Select
+            <Back previousPage={"/Welcome"} style={LSClasses.backBtn} />
+          </h1>
           <div className={LSClasses.levelSelectContainer}>
             {levels.map((level) => {
               return (

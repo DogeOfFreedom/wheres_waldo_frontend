@@ -111,12 +111,14 @@
 .backBtn {
     position: absolute;
     right: 0px;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(120%, -50%);
 }
 
 @media (max-width: 790px) {
     .levelSelectContainer {
         flex-direction: column;
+        gap: 0px;
     }
 
     .waldoHead {
@@ -152,6 +154,7 @@
 
     .innerContainer {
         margin: 0px 50px;
+        padding: 25px 0px;
     }
 }
 
