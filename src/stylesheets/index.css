@@ -99,7 +99,7 @@ body {
   --icon: clamp(1.5rem, 2vw, 3rem);
   --rotation: -90deg;
   
-  background-color: #1c1c1c;
+  background-color: #E94B4B; 
   padding: 0px;
   font-size: var(--icon);
 
@@ -126,7 +126,7 @@ body {
     transform: translate(calc(-50% + var(--offsetX)), calc(-50% + var(--offsetY)));
     top: 50%;
     left: 50%;
-    color: #E94B4B;
+    color: #1c1c1c ;
   }
 
   .rotate {
