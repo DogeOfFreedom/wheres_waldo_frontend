@@ -21,7 +21,7 @@ describe("Welcome Component", () => {
         <Welcome />
       </MemoryRouter>
     );
-    expect(screen.getByText(/(Jiachen Si)/i)).toBeInTheDocument();
+    expect(screen.getByText(/(Kabocci)/i)).toBeInTheDocument();
     expect(
       screen.getByText(/Can someone please find him?/i)
     ).toBeInTheDocument();

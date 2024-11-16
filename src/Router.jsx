@@ -14,27 +14,27 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Redirect />,
-    errorElement: <ErrorPage />,
   },
   {
     path: "/Welcome",
     element: <Welcome />,
-    errorElement: <ErrorPage />,
   },
   {
     path: "/LevelSelect",
     element: <LevelSelect />,
-    errorElement: <ErrorPage />,
   },
   {
     path: "/Game/:level",
     element: <Game />,
-    errorElement: <ErrorPage />,
   },
   {
     path: "/End",
     element: <EndScreen />,
-    errorElement: <ErrorPage />,
+  },
+  // Catch all error route
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);
 
