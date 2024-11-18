@@ -2,19 +2,20 @@ import { useNavigate } from "react-router-dom";
 import LSClasses from "./stylesheets/levelSelect.module.css";
 import ColouredBG from "./ColouredBG";
 import Back from "./Back";
+import { useEffect, useState } from "react";
 
 function LevelSelect() {
-  const levels = [
-    {
-      name: "Starlit Street",
-      img: "./starlit_street.jpg",
-    },
-    {
-      name: "Track & Field",
-      img: "track_and_field.jpg",
-    },
-    { name: "Snow Day", img: "snow_day.jpg" },
-  ];
+  const [levels, setLevels] = useState([]);
+
+  useEffect(() => {
+    const fetchLevels = async () => {
+      const response = await fetch("http://localhost:3000/levels");
+      const json = await response.json();
+      setLevels(json);
+    };
+    fetchLevels();
+  }, []);
+
   const navigate = useNavigate();
 
   return (
