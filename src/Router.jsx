@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Redirect from "./Redirect";
 import ErrorPage from "./ErrorPage";
-import Game from "./Game/Game";
+import Game from "./Game";
 import EndScreen from "./EndScreen/EndScreen";
 import Welcome from "./Welcome";
 import LevelSelect from "./LevelSelect";
@@ -27,12 +27,12 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/Game/:levelname",
+    path: "/Game/:levelName",
     element: <Game />,
     // errorElement: <ErrorPage />,
   },
   {
-    path: "/End",
+    path: "/End/:levelName",
     element: <EndScreen />,
     errorElement: <ErrorPage />,
   },

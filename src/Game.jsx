@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import ColouredBG from "../ColouredBG";
-import GameClasses from "../stylesheets/game.module.css";
-import { Navigate, useParams } from "react-router-dom";
-import Back from "../Back";
+import ColouredBG from "./ColouredBG";
+import GameClasses from "./stylesheets/game.module.css";
+import { useNavigate, useParams } from "react-router-dom";
+import Back from "./Back";
 
 function Game() {
+  const navigate = useNavigate();
   const modalRef = useRef(null);
   const nameFieldRef = useRef(null);
   const dragging = useRef(false);
@@ -21,22 +22,15 @@ function Game() {
     top: "0px",
     left: "0px",
   });
-  const [answerMarkerStyle, setAnswerMarkerStyle] = useState({
-    top: "100px",
-    left: "100px",
-    display: "none",
-  });
   const [gameImageStyle, setGameImageStyle] = useState({});
-  const { levelname } = useParams(null);
+  const { levelName } = useParams(null);
   const [level, setLevel] = useState({});
   const [name, setName] = useState("");
   const [anon, setAnon] = useState(false);
-  const [x, setX] = useState(null);
-  const [y, setY] = useState(null);
 
   useEffect(() => {
     const fetchLevel = async () => {
-      const response = await fetch("http://localhost:3000/levels/" + levelname);
+      const response = await fetch("http://localhost:3000/levels/" + levelName);
       const json = await response.json();
       setLevel(json);
     };
@@ -68,20 +62,26 @@ function Game() {
     const body = {
       name,
       anon,
+      time: {
+        minutes,
+        seconds,
+        miliseconds,
+      },
+      levelId: level.id,
     };
     try {
       const response = await fetch("http://localhost:3000/players", {
         method: "POST",
-        header: {
+        headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
       });
       const data = await response.json();
       if (data.validName) {
-        Navigate("/end");
+        navigate("/End/" + levelName);
       } else {
-        setErrorMsg(data.error);
+        setErrorMsg(data.errors[0].msg);
       }
     } catch (e) {
       console.log(e.message);
@@ -98,7 +98,7 @@ function Game() {
       visibility: "visible",
     });
     const body = {
-      name: levelname,
+      name: levelName,
       x: mouseX - bounds.x,
       y: mouseY - bounds.y,
     };
@@ -111,18 +111,13 @@ function Game() {
         },
         body: JSON.stringify(body),
       });
-      const { inside } = await res.json();
+      // const { inside, answer } = await res.json();
+      const json = await res.json();
 
       // Player found target
-      if (inside) {
+      if (json.inside) {
         setRunning(false); // Stop timer
         modalRef.current.showModal(); // Show modal for user to input their name
-        const style = {
-          top: mouseY,
-          left: mouseX,
-          display: "block",
-        };
-        setAnswerMarkerStyle(style);
       }
     } catch (e) {
       console.log(e.message);
@@ -157,6 +152,10 @@ function Game() {
       const client = getRelativeCoords(e);
       const { dimensions } = level;
 
+      setPlayerMarkerStyle({
+        visibility: "hidden",
+      });
+
       const bounds = e.currentTarget.getBoundingClientRect();
       const minX = 0;
       const minY = 0;
@@ -167,27 +166,15 @@ function Game() {
         oldClientLocation.current,
         client
       );
+      if (xDiff != 0 || yDiff != 0) {
+        moved.current = true;
+      }
       oldClientLocation.current = getRelativeCoords(e);
-
-      // console.log(
-      //   `${oldClientLocation.current.x} ${oldClientLocation.current.y} --- ${client.x} ${client.y}`
-      // );
-
-      console.log(`${xDiff} ${yDiff}`);
-
-      // if (xDiff > 100 || yDiff > 100) {
-      //   let i = 0;
-      // }
 
       imgLocation.current = {
         x: Math.min(maxX, Math.max(minX, imgLocation.current.x + xDiff)),
         y: Math.min(maxY, Math.max(minY, imgLocation.current.y + yDiff)),
       };
-      // oldClientLocation.current = getRelativeCoords(e);
-
-      if (xDiff > 15 || yDiff > 15) {
-        let i = 0;
-      }
 
       setGameImageStyle({
         transform: `translate(${String(-imgLocation.current.x)}px, ${String(
@@ -201,19 +188,12 @@ function Game() {
     dragging.current = false;
     // Client clicked
     if (!moved.current) {
-      // placeMarker(e);
+      placeMarker(e);
     }
   };
 
   const handleMouseExit = () => {
     dragging.current = false;
-  };
-
-  const getCoord = (e) => {
-    const rect = e.target.getBoundingClientRect();
-    console.log(rect);
-    setX(Math.max(Math.floor(e.clientX - rect.x), 0));
-    setY(Math.max(Math.floor(e.clientY - rect.y), 0));
   };
 
   // time is in hundreths of a second (1/100)
@@ -247,14 +227,8 @@ function Game() {
               <span>{miliseconds}</span>
             </div>
             <Back style={GameClasses.backBtn} previousPage={"/LevelSelect"} />
-            {/* <button onClick={() => modalRef.current.showModal()}>
-              Show modal
-            </button> */}
-            <div className={GameClasses.test}>
-              <span>{x}</span>
-              <span> : </span>
-              <span>{y}</span>
-            </div>
+            <p>Click and drag to navigate around the image</p>
+            <p>Click to make your choice</p>
           </div>
         </div>
         <div
@@ -278,11 +252,6 @@ function Game() {
           className={GameClasses.playerChoiceMarker}
         >
           <div className={GameClasses.redDot}></div>
-        </div>
-        <div style={answerMarkerStyle} className={GameClasses.answerMarker}>
-          <div className={GameClasses.innerAnswerMarker}>
-            <img src="../waldo_head_square.png" alt="" />
-          </div>
         </div>
 
         <dialog ref={modalRef}>
