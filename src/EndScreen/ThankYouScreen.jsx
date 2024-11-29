@@ -6,13 +6,22 @@ function ThankYouScreen() {
 
   return (
     <div className={`screenContainer ${TYSClasses.container}`}>
-      <span>Thanks for playing</span>
-      <button onClick={() => navigate("/LevelSelect")} className="actionBtn">
-        Play Again?
-      </button>
-      <button onClick={() => navigate("/Welcome")} className="actionBtn">
-        Home
-      </button>
+      <div className={TYSClasses.titleContainer}>
+        <p>Thanks for</p>
+        <p>playing</p>
+        <button
+          onClick={() => navigate("/LevelSelect")}
+          className={`actionBtn ${TYSClasses.playAgainBtn}`}
+        >
+          Play Again?
+        </button>
+        <button
+          onClick={() => navigate("/Welcome")}
+          className={`actionBtn ${TYSClasses.homeBtn}`}
+        >
+          Home
+        </button>
+      </div>
     </div>
   );
 }
